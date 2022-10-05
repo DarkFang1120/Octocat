@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textViewHeading"
+        android:layout_width="410dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/yellow"
+        android:text=" Client Details"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonCreatePdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:cursorVisible="true"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="onClick"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:orientation="horizontal"
+        android:shadowColor="@android:color/darker_gray"
+        android:text="Create PDF"
+        android:textColor="@color/white"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.99" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="394dp"
+        android:layout_height="168dp"
+        android:layout_marginBottom="370dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F3F1F1"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.161">
+
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Date"
+                android:inputType="date"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextCustName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Company Name"
+                android:inputType="textPersonName"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextCustAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Company Address"
+                android:inputType="textPostalAddress"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextCustGst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Customer GST"
+                android:inputType="text"
+                android:maxLength="15"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextCustPan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Customer PAN"
+                android:inputType="text"
+                android:maxLength="10"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Customer Mobile"
+                android:inputType="phone"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Customer E-Mail"
+                android:inputType="textEmailAddress"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextServiceType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Service Package"
+                android:inputType="textPersonName"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <CheckBox
+        android:id="@+id/checkBoxLogoDesign"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Logo Design"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView1" />
+
+    <CheckBox
+        android:id="@+id/checkBoxVcDesign"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="V.C Envelope Design"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.039"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxLogoDesign" />
+
+    <CheckBox
+        android:id="@+id/checkBoxProductPrint"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Product Brochure-Printing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxVcDesign" />
+
+    <CheckBox
+        android:id="@+id/checkBoxGoogleAds"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Google Ads"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxProductPrint" />
+
+    <CheckBox
+        android:id="@+id/checkBoxFesFlyer"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="2dp"
+        android:text="Festival Flyer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxGoogleAds" />
+
+    <CheckBox
+        android:id="@+id/checkBoxSocialMarketing"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="307dp"
+        android:text="Social Media Marketing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxFesFlyer" />
+
+    <CheckBox
+        android:id="@+id/checkBoxProductFlyer"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Product Flyer-Posting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxSocialMarketing" />
+
+    <CheckBox
+        android:id="@+id/checkBoxWebDesHosting"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginTop="4dp"
+        android:text="Web Design Hosting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView1" />
+
+    <CheckBox
+        android:id="@+id/checkBoxVcPrint"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="216dp"
+        android:text="V.C Envelope Print"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxWebDesHosting" />
+
+    <CheckBox
+        android:id="@+id/checkBoxProductPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="216dp"
+        android:text="Product Photography"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxVcPrint" />
+
+    <CheckBox
+        android:id="@+id/checkBoxSeoSem"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="216dp"
+        android:text="SEO/SEM Services"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxProductPhoto" />
+
+    <CheckBox
+        android:id="@+id/checkBoxDailyIntFlyer"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="216dp"
+        android:text="Daily International Flyer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxSeoSem" />
+
+    <CheckBox
+        android:id="@+id/checkBoxAppDev"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="216dp"
+        android:text="Mobile App Development"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxDailyIntFlyer" />
+
+    <CheckBox
+        android:id="@+id/checkBoxOther"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="216dp"
+        android:text="Other"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxAppDev" />
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="390dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="180dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView1"
+        app:layout_constraintVertical_bias="0.021">
+
+        <LinearLayout
+            android:id="@+id/linerLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F3F1F1"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.99">
+
+            <EditText
+                android:id="@+id/editTextContractDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Duration Of Contract"
+                android:inputType="text"
+                android:textSize="15sp"
+                android:autofillHints="" />
+
+            <EditText
+                android:id="@+id/editTextDomainName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Domain Name"
+                android:inputType="text"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextRemarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Remarks"
+                android:inputType="text"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextProduct1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Product-1"
+                android:inputType="text"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextAmount1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Amount-1"
+                android:inputType="number"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextProduct2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Product-2"
+                android:inputType="text"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextAmount2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Amount-2"
+                android:inputType="number"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextProduct3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Product-3"
+                android:inputType="text"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextAmount3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Amount-3"
+                android:inputType="number"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextKeyword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Keyword"
+                android:inputType="text"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextAmtWithoutGst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Total Amount in INR without GST"
+                android:inputType="number"
+                android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/editTextAmtWithGst"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            android:hint="Total Amount in INR with GST" />
+
+                        <EditText
+                            android:id="@+id/editTextAdvancePay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            android:hint="Advance Payment Amount INR" />
+
+                        <EditText
+                            android:id="@+id/editTextModePay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:textSize="15sp"
+                            android:inputType="text"
+                            android:hint="Mode Of Payment" />
+
+                        <EditText
+                            android:id="@+id/editTextBalPendingAmt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:textSize="15sp"
+                            android:inputType="number"
+                            android:hint="Balance Pending Amount in INR" />
+
+                        <EditText
+                            android:id="@+id/editTextTermBalPending"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:textSize="15sp"
+                            android:inputType="text"
+                            android:hint="Term of Balance Pending" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textViewHeading2"
+        android:layout_width="410dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="155dp"
+        android:layout_marginBottom="230dp"
+        android:background="@color/yellow"
+        android:text=" Contract Details"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView1" />
+
+        <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="170dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView3"
+        app:srcCompat="@drawable/vilogo" />
+
+    <Button
+        android:id="@+id/buttonNextActivty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:onClick="onClick"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.864"
+        app:layout_constraintStart_toEndOf="@+id/buttonCreatePdf" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
