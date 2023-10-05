@@ -1,4 +1,7 @@
-package com.example.invoiceapp_master;
+package com.example.octocat;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
@@ -13,7 +16,6 @@ import android.graphics.Typeface;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,9 +24,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
 
     Button button, buttonNextActivity;
     String[] informationArray = new String[]{"Date","Company Name","Company Address","Customer GST","Customer PAN","Customer Mobile","Email-ID","Service Package"};
@@ -54,12 +54,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-        buttonNextActivity = findViewById(R.id.buttonNextActivty);
         buttonNextActivity.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MainActivity2.class));
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
             }
         });
 
@@ -132,11 +131,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boxMobileApp = findViewById(R.id.checkBoxAppDev);
         boxOther = findViewById(R.id.checkBoxOther);
 
-        bmp = BitmapFactory.decodeResource(getResources(),R.drawable.logobigfile);
-        scaledBitmap = Bitmap.createScaledBitmap(bmp, 500,300,true);
-
-        bmp2 = BitmapFactory.decodeResource(getResources(),R.drawable.stamp);
-        scaledBitmap2 = Bitmap.createScaledBitmap(bmp2, 250,250,true);
+//        bmp = BitmapFactory.decodeResource(getResources(), com.google.android.material.R.drawable.ic_android_black_24dp);
+//        scaledBitmap = Bitmap.createScaledBitmap(bmp, 500,300,true);
+//
+//        bmp2 = BitmapFactory.decodeResource(getResources(), com.google.android.material.R.drawable.ic_android_black_24dp);
+//        scaledBitmap2 = Bitmap.createScaledBitmap(bmp2, 250,250,true);
 
         createPDF();
     }
@@ -230,7 +229,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 canvas.drawText(String.valueOf(customerServiceType.getText()),600,1100,myPaint);
 
 
-
                 // horizontal line in the name, number invoice column
 
                 canvas.drawLine(550,350,550,1100,myPaint);
@@ -251,7 +249,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 myPaint.setStyle(Paint.Style.FILL);
 
                 myPaint.setTextSize(60f);
-
 
                 canvas.drawText("Logo Design",70,1220,myPaint);
                 if(boxLogoDesign.isChecked()) {
@@ -435,11 +432,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 myPaint.setStyle(Paint.Style.STROKE);
                 myPaint.setStrokeWidth(40);
                 canvas.drawLine(20,3400,myPageInfo1.getPageWidth()-20,3400,myPaint);
-                
+
 
                 myPdfDocument.finishPage(myPage1);
 
-                File file = new File(Environment.getExternalStorageDirectory(), "/1PerformaVisionArt.pdf");
+                File file = new File(Environment.getExternalStorageDirectory(), "/1Invoice.pdf");
                 try {
                     myPdfDocument.writeTo(new FileOutputStream(file));
                 } catch (IOException e) {
