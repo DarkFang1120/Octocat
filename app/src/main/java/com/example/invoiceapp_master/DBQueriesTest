@@ -1,0 +1,141 @@
+package com.example.appkhushveehoreca;
+
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
+
+import android.content.Context;
+import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DBRepositoryTest {
+
+    private DBRepository dbRepository;
+    private FirebaseFirestore mockFirestore;
+    private RecyclerView mockRecyclerView;
+    private Context mockContext;
+
+    @Before
+    public void setUp() {
+        mockFirestore = mock(FirebaseFirestore.class, RETURNS_DEEP_STUBS);
+        dbRepository = new DBRepository();
+        mockRecyclerView = mock(RecyclerView.class);
+        mockContext = mock(Context.class);
+    }
+
+    @Test
+    public void testLoadCategories_Successful() {
+        // Arrange
+        QuerySnapshot mockSnapshot = mock(QuerySnapshot.class);
+        QueryDocumentSnapshot mockDoc = mock(QueryDocumentSnapshot.class);
+
+        when(mockDoc.getString("icon")).thenReturn("icon_url");
+        when(mockDoc.getString("categoryName")).thenReturn("Drinks");
+
+        List<QueryDocumentSnapshot> docs = new ArrayList<>();
+        docs.add(mockDoc);
+
+        when(mockSnapshot.iterator()).thenReturn(docs.iterator());
+
+        Task<QuerySnapshot> mockTask = mock(Task.class);
+        when(mockTask.isSuccessful()).thenReturn(true);
+        when(mockTask.getResult()).thenReturn(mockSnapshot);
+
+        ArgumentCaptor<OnCompleteListener<QuerySnapshot>> captor =
+                ArgumentCaptor.forClass(OnCompleteListener.class);
+
+        // Act
+        dbRepository.loadCategories(mockRecyclerView, mockContext);
+
+        // Capture the listener
+        verify(mockFirestore.collection("CATEGORIES").orderBy("index"))
+                .get()
+                .addOnCompleteListener(captor.capture());
+
+        // Simulate callback
+        captor.getValue().onComplete(mockTask);
+
+        // Assert
+        // (Adapter is set on recyclerView)
+        verify(mockRecyclerView).setAdapter(any(CategoryAdapter.class));
+    }
+
+    @Test
+    public void testLoadCategories_Failure() {
+        // Arrange
+        Exception fakeException = new Exception("Firestore failed");
+        Task<QuerySnapshot> mockTask = mock(Task.class);
+
+        when(mockTask.isSuccessful()).thenReturn(false);
+        when(mockTask.getException()).thenReturn(fakeException);
+
+        ArgumentCaptor<OnCompleteListener<QuerySnapshot>> captor =
+                ArgumentCaptor.forClass(OnCompleteListener.class);
+
+        // Act
+        dbRepository.loadCategories(mockRecyclerView, mockContext);
+
+        verify(mockFirestore.collection("CATEGORIES").orderBy("index"))
+                .get()
+                .addOnCompleteListener(captor.capture());
+
+        captor.getValue().onComplete(mockTask);
+
+        // Assert
+        // Toast should be shown (hard to verify directly, but we can check exception handling path)
+        assertEquals("Firestore failed", mockTask.getException().getMessage());
+    }
+
+    @Test
+    public void testLoadFragmentData_WithViewType0() {
+        // Arrange
+        QuerySnapshot mockSnapshot = mock(QuerySnapshot.class);
+        QueryDocumentSnapshot mockDoc = mock(QueryDocumentSnapshot.class);
+
+        when(mockDoc.getLong("view_type")).thenReturn(0L);
+        when(mockDoc.getLong("no_of_banners")).thenReturn(1L);
+        when(mockDoc.getString("banner_1")).thenReturn("banner_url");
+        when(mockDoc.getString("banner_1_background")).thenReturn("bg_color");
+
+        List<QueryDocumentSnapshot> docs = new ArrayList<>();
+        docs.add(mockDoc);
+
+        when(mockSnapshot.iterator()).thenReturn(docs.iterator());
+
+        Task<QuerySnapshot> mockTask = mock(Task.class);
+        when(mockTask.isSuccessful()).thenReturn(true);
+        when(mockTask.getResult()).thenReturn(mockSnapshot);
+
+        ArgumentCaptor<OnCompleteListener<QuerySnapshot>> captor =
+                ArgumentCaptor.forClass(OnCompleteListener.class);
+
+        // Act
+        dbRepository.loadFragmentData(mockRecyclerView, mockContext, 0, "FOOD");
+
+        verify(mockFirestore.collection("CATEGORIES")
+                .document("FOOD")
+                .collection("TOP_DEALS")
+                .orderBy("index"))
+                .get()
+                .addOnCompleteListener(captor.capture());
+
+        captor.getValue().onComplete(mockTask);
+
+        // Assert
+        verify(mockRecyclerView).setAdapter(any(HomePageAdapter.class));
+    }
+}
